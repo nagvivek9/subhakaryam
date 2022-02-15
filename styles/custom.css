@@ -31,9 +31,7 @@ body {
  background-color: rgba(177,213,229,0.2);
  margin: 5px;
 }
-#subList {
- display: none;
-}
+
 #btn_back {
  display: none;
  background-color: #B1D5E5;
@@ -41,3 +39,12 @@ body {
  text-shadow: rgba(255,255,255,0.94) 0px 0px 26px;
  font-size: 25pt;
 }
+#mainList {
+  transition: all 1s linear;
+ }
+ #subList {
+  transition: all 1s linear;
+  display: none;
+  opacity: 0;
+ }
+ 

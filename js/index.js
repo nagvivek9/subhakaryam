@@ -99,14 +99,46 @@ const sublist= {
 }
 
 const screens=['mainList','subList'];
+
 function showScreen(id) {
  screens.forEach(s=>{
-  document.getElementById(s).style.display="none"
+  if(s==id) return;
+  document.getElementById(s).style.opacity=0;
+  setTimeout(()=>{
+   document.getElementById(s).style.display="none";
+  },15);
  });
  document.getElementById(id).style.display="block";
+ setTimeout(()=>{
+  document.getElementById(id).style.opacity=1;
+ },15);
+}
+
+function toggleScreen() {
+ let mainScreen=document.getElementById('mainList');
+ let subScreen=document.getElementById('subList');
+
+ if (mainScreen.classList.contains('display-none')) {
+  mainScreen.classList.remove('display-none');
+  setTimeout(function () {
+   mainScreen.classList.remove('opacity-0');
+   subScreen.classList.remove('opacity-1');
+   subScreen.classList.add('opacity-0');    
+  }, 20);
+ } else {
+   mainScreen.classList.add('opacity-0');    
+   mainScreen.addEventListener('transitionend', function(e) {
+    mainScreen.classList.add('display-none');
+    subScreen.classList.add('opacity-1'); 
+    subScreen.classList.add('display-block'); 
+   }, {
+     capture: false,
+     once: true,
+     passive: false
+   });
+ }
 }
 function onMainItemClick(id) {
- alert(id);
  if(!sublist[id]) return alert("No sub categories found");
  var parent=document.getElementById('subList');
  parent.innerHTML="";

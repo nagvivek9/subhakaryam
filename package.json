@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/nagvivek9/subhakaryam/issues"
   },
-  "homepage": "https://github.com/nagvivek9/subhakaryam#readme"
+  "homepage": "https://github.com/nagvivek9/subhakaryam#readme",
+  "engines": {
+    "node": "16.x"
+  }
 }

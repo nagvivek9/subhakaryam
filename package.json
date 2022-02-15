@@ -1,0 +1,25 @@
+{
+  "name": "subhakaryam",
+  "version": "1.0.0",
+  "description": "e-commence",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nagvivek9/subhakaryam.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nagvivek9/subhakaryam/issues"
+  },
+  "homepage": "https://github.com/nagvivek9/subhakaryam#readme"
+}

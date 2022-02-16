@@ -5,6 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "express": "^4.17.2",
+    "html-webpack-plugin": "^5.5.0",
     "webpack": "^5.68.0"
   },
   "devDependencies": {

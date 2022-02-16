@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/js/index',
@@ -33,17 +34,17 @@ module.exports = {
      }
    ],
   },
-  mode: "development"
-  // plugins: [
-  //  new HtmlWebpackPlugin({
-  //    title: 'Setting up webpack 4',
-  //    template: './src/index.html',
-  //    inject: true,
-  //    minify: {
-  //      removeComments: true,
-  //      collapseWhitespace: true
-  //    },
-  //  })
- //]
+  mode: "development",
+  plugins: [
+   new HtmlWebpackPlugin({
+     title: 'Setting up webpack 4',
+     template: './src/index.html',
+     inject: true,
+     minify: {
+       removeComments: true,
+       collapseWhitespace: true
+     },
+   })
+ ]
 
 }

@@ -8,6 +8,6 @@ app.get('/abc', (req, res) => {
 })
 app.use(express.static(path.join(__dirname,'dist')));
 console.log(path.join(__dirname,'dist'));
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`Shubhakaryam app listening on port ${port}`)
 })

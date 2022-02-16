@@ -1,13 +1,13 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 3000;
+const path=require('path');
 
 app.get('/abc', (req, res) => {
   res.send('Hello World!')
 })
-console.log(__dirname);
-app.use(express.static(__dirname));
-
+app.use(express.static(path.join(__dirname,'dist')));
+console.log(path.join(__dirname,'dist'));
 app.listen(port, () => {
   console.log(`Shubhakaryam app listening on port ${port}`)
 })

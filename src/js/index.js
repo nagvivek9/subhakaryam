@@ -2,25 +2,25 @@ const main_items= [
  [
   {
    id:1,
-   img: "wedding.jpg",
+   class: "wedding",
    header:"Wedding",
    content:"Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum."
   },
   {
    id:2,
-   img: "naamakaranam.jpg",
+   class: "naamakaranam",
    header:"Naamakaranam",
    content:"Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum."
   },
   {
    id:3,
-   img: "upanayanam.jpg",
+   class: "updanayanam",
    header:"Upanayanam",
    content:"Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum."
   },
   {
    id:4,
-   img: "annapraasana.jpg",
+   class: "annapraasana",
    header:"Anna praasana",
    content:"Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum."
   }
@@ -28,25 +28,25 @@ const main_items= [
  [
   {
    id:5,
-   img: "wedding.jpg",
+   class: "wedding",
    header:"Wedding",
    content:"Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum."
   },
   {
    id:6,
-   img: "naamakaranam.jpg",
+   class: "naamakaranam",
    header:"Naamakaranam",
    content:"Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum."
   },
   {
    id:7,
-   img: "upanayanam.jpg",
+   class: "updanayanam",
    header:"Upanayanam",
    content:"Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum."
   },
   {
    id:8,
-   img: "annapraasana.jpg",
+   class: "annapraasana",
    header:"Anna praasana",
    content:"Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum."
   }
@@ -57,19 +57,19 @@ const sublist= {
  "1": [
   {
    id:1,
-   img: "wedding.jpg",
+   class: "wedding",
    header:"Wedding",
    content:"Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum."
   },
   {
    id:2,
-   img: "naamakaranam.jpg",
+   class: "naamakaranam",
    header:"Naamakaranam",
    content:"Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum."
   },
   {
    id:3,
-   img: "upanayanam.jpg",
+   class: "updanayanam",
    header:"Upanayanam",
    content:"Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum."
   }
@@ -77,7 +77,7 @@ const sublist= {
  "2": [
   {
    id:1,
-   img: "wedding.jpg",
+   class: "wedding",
    header:"Wedding",
    content:"Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum."
   }
@@ -85,18 +85,24 @@ const sublist= {
  "3": [
   {
    id:1,
-   img: "wedding.jpg",
+   class: "wedding",
    header:"Wedding",
    content:"Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum."
   },
   {
    id:2,
-   img: "naamakaranam.jpg",
+   class: "naamakaranam",
    header:"Naamakaranam",
    content:"Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum."
   }
  ]
 }
+
+import '../styles/style.css';
+import '../styles/custom.css';
+import html from "../index.html";
+import mail from '../images/mail.png';
+import wedding from '../images/wedding.jpg';
 
 const screens=['mainList','subList'];
 
@@ -114,46 +120,32 @@ function showScreen(id) {
  },15);
 }
 
-function toggleScreen() {
- let mainScreen=document.getElementById('mainList');
- let subScreen=document.getElementById('subList');
 
- if (mainScreen.classList.contains('display-none')) {
-  mainScreen.classList.remove('display-none');
-  setTimeout(function () {
-   mainScreen.classList.remove('opacity-0');
-   subScreen.classList.remove('opacity-1');
-   subScreen.classList.add('opacity-0');    
-  }, 20);
- } else {
-   mainScreen.classList.add('opacity-0');    
-   mainScreen.addEventListener('transitionend', function(e) {
-    mainScreen.classList.add('display-none');
-    subScreen.classList.add('opacity-1'); 
-    subScreen.classList.add('display-block'); 
-   }, {
-     capture: false,
-     once: true,
-     passive: false
-   });
- }
-}
-function onMainItemClick(id) {
+function onMainItemClick() {
+  let id=this.id;
+  console.log(id);
  if(!sublist[id]) return alert("No sub categories found");
  var parent=document.getElementById('subList');
  parent.innerHTML="";
  sublist[id].forEach(item=>{
-  parent.innerHTML+=`
-  <div class="w3-quarter box-shadow">
-   <div class="innerBox" onclick="onMainItemClick(${item.id})">
-    <img src="./images/${item.img}" alt="Sandwich" style="width:100%">
-    <div>
-     <h3>${item.header}</h3>
-     <p>${item.content}</p>
-    </div>
-   </div>
-  </div>
-  `;
+  const div=document.createElement('div');
+  div.className="w3-quarter box-shadow";
+  div.id=item.id;
+  //div.onclick=onMainItemClick;
+  const in_div=document.createElement('div');
+  in_div.className="innerBox";
+  const img=document.createElement('img');
+  //img.src="./images/wedding.png";
+  img.className=item.class;
+  const h1=document.createElement('h3');
+  h1.innerText=item.header;
+  const p=document.createElement('p');
+  p.innerText=item.content;
+  in_div.appendChild(img);
+  in_div.appendChild(h1);
+  in_div.appendChild(p);
+  div.appendChild(in_div);
+  parent.appendChild(div);
  });
  document.getElementById('btn_back').style.display="block";
  showScreen('subList');
@@ -168,20 +160,41 @@ function loadMainItems() {
  parent.innerHTML="";
  main_items.forEach(mainItem=>{
   mainItem.forEach(item=>{
-   parent.innerHTML+=`
-   <div class="w3-quarter box-shadow">
-    <div class="innerBox" onclick="onMainItemClick(${item.id})">
-     <img src="./images/${item.img}" alt="Sandwich" style="width:100%">
-     <div>
-      <h3>${item.header}</h3>
-      <p>${item.content}</p>
-     </div>
-    </div>
-   </div>
-   `;
+    const div=document.createElement('div');
+    div.className="w3-quarter box-shadow";
+    div.id=item.id;
+    div.onclick=onMainItemClick;
+    const in_div=document.createElement('div');
+    in_div.className="innerBox";
+    const img=document.createElement('img');
+    //img.src="./images/wedding.png";
+    img.className=item.class;
+    const h1=document.createElement('h3');
+    h1.innerText=item.header;
+    const p=document.createElement('p');
+    p.innerText=item.content;
+    in_div.appendChild(img);
+    in_div.appendChild(h1);
+    in_div.appendChild(p);
+    div.appendChild(in_div);
+    parent.appendChild(div);
+
+  //  parent.innerHTML+=`
+  //  <div class="w3-quarter box-shadow">
+  //   <div class="innerBox" onclick="onMainItemClick(${item.id})">
+  //    <img src="./images/${item.img}" alt="Sandwich" style="width:100%">
+  //    <div>
+  //     <h3>${item.header}</h3>
+  //     <p>${item.content}</p>
+  //    </div>
+  //   </div>
+  //  </div>
+  //  `;
   });
  });
 }
 function onPageLoad() {
  loadMainItems();
+ document.getElementById('btn_back').onclick=goBack;
 }
+onPageLoad();

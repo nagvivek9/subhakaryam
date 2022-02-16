@@ -4,9 +4,16 @@
   "description": "e-commence",
   "main": "app.js",
   "dependencies": {
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "webpack": "^5.68.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "css-loader": "^6.6.0",
+    "file-loader": "^6.2.0",
+    "html-loader": "^3.1.0",
+    "style-loader": "^3.3.1",
+    "webpack-cli": "^4.9.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",

@@ -48,3 +48,19 @@ body {
   opacity: 0;
  }
  
+ .wedding {
+   content:url("../images/wedding.jpg");
+   width: 100%;
+ }
+ .annapraasana {
+  content:url("../images/annapraasana.jpg");
+  width: 100%;
+}
+.naamakaranam {
+  content:url("../images/naamakaranam.jpg");
+  width: 100%;
+}
+.updanayanam {
+  content:url("../images/upanayanam.jpg");
+  width: 100%;
+}
